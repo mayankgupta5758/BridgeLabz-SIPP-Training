@@ -1,0 +1,27 @@
+Start
+STACK undoStack
+METHOD typeText(text):
+    PUSH text TO undoStack
+
+METHOD undo():
+    IF stack NOT empty → POP last text
+
+MAIN:
+    typeText("Hello")
+    typeText("World")
+    undo() // Removes "World"
+End
+
+
+Start
+QUEUE normalQueue
+QUEUE emergencyQueue
+
+METHOD addCustomer(name, priority):
+    IF priority = "emergency" → ENQUEUE emergencyQueue
+    ELSE ENQUEUE normalQueue
+
+METHOD serveCustomer():
+    IF emergencyQueue NOT empty → DEQUEUE emergencyQueue
+    ELSE DEQUEUE normalQueue
+End

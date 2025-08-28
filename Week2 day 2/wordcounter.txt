@@ -1,0 +1,13 @@
+Start
+
+text = "Sports bring people together. Sports inspire teamwork. Sports create leaders."
+words = split(normalize(text))
+map = empty Map
+for word in words
+    if word in map
+        map[word]++
+    else
+        map[word] = 1
+print map
+
+End

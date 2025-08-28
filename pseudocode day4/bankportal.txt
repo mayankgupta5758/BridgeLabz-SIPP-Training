@@ -1,0 +1,32 @@
+Start
+
+CLASS Account
+    ATTRIBUTES: accountNumber, holderName, balance
+    
+    METHOD deposit(amount)
+        balance += amount
+    
+    METHOD withdraw(amount)
+        PRINT "Base withdrawal - override in subclasses"
+
+CLASS SavingAccount EXTENDS Account
+    ATTRIBUTES: withdrawalLimit
+    
+    METHOD withdraw(amount)
+        IF amount <= balance AND amount <= withdrawalLimit
+            balance -= amount
+            PRINT "Withdrawn from Savings"
+        ELSE
+            PRINT "Withdrawal not allowed"
+
+CLASS CurrentAccount EXTENDS Account
+    ATTRIBUTES: overdraftLimit
+    
+    METHOD withdraw(amount)
+        IF amount <= balance + overdraftLimit
+            balance -= amount
+            PRINT "Withdrawn from Current"
+        ELSE
+            PRINT "Exceeds overdraft limit"
+
+End

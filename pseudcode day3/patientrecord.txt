@@ -1,0 +1,18 @@
+Start
+
+DECLARE patientMap as HashMap<patientID, Patient>
+
+METHOD addPatient(patient)
+    patientMap.put(patient.id, patient)
+
+METHOD getPatient(patientID)
+    RETURN patientMap.get(patientID)
+
+METHOD updatePatient(patientID, newDetails)
+    IF patientMap.contains(patientID)
+        patientMap.put(patientID, newDetails)
+
+METHOD deletePatient(patientID)
+    patientMap.remove(patientID)
+
+End

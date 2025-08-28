@@ -1,0 +1,12 @@
+Start
+
+class SurveyResponse
+    attributes: restaurantName, rating
+
+responses = [("PizzaHut",4),("PizzaHut",5),("KFC",3),("KFC",4),("Subway",5),("Subway",4),("Subway",5)]
+
+grouped = group responses by restaurantName
+averages = calculate average rating per group
+print averages
+
+End

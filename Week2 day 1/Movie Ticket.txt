@@ -1,0 +1,40 @@
+Start
+
+CLASS Ticket
+    ATTRIBUTE movieName, seatNumber, price, status
+    METHOD issue()
+        status = "Booked"
+    METHOD cancel()
+        status = "Cancelled"
+
+CLASS Theatre
+    ATTRIBUTE availableSeats, movieSchedules, ticketsList
+    METHOD bookTicket(customer, movie, seat)
+        IF seat IN availableSeats
+            ticket = NEW Ticket(movie, seat, price, "Booked")
+            REMOVE seat FROM availableSeats
+            ADD ticket TO ticketsList
+            RETURN ticket
+        ELSE
+            PRINT "Seat not available"
+    METHOD cancelTicket(ticket)
+        ticket.cancel()
+        ADD ticket.seatNumber TO availableSeats
+
+CLASS Customer
+    ATTRIBUTE name, bookedTickets
+    METHOD bookMovie(theatre, movie, seat)
+        ticket = theatre.bookTicket(this, movie, seat)
+        ADD ticket TO bookedTickets
+    METHOD cancelMovie(theatre, ticket)
+        theatre.cancelTicket(ticket)
+        REMOVE ticket FROM bookedTickets
+
+MAIN
+    customer = NEW Customer("Ravi")
+    theatre = NEW Theatre(["A12", "A13"], ["Avengers 6PM"])
+    
+    t1 = customer.bookMovie(theatre, "Avengers 6PM", "A12")
+    customer.cancelMovie(theatre, t1)
+
+End

@@ -1,0 +1,15 @@
+Start
+
+CLASS Book
+    ATTRIBUTES: title, author, year, rating
+
+DECLARE books as LIST<Book>
+
+RESULT = books.stream()
+              .filter(book.year > 2015)
+              .filter(book.rating > 4.5)
+              .collect(toList)
+
+PRINT RESULT
+
+End

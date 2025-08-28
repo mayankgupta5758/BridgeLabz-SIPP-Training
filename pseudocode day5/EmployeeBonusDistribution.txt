@@ -1,0 +1,21 @@
+Start
+
+CLASS Employee
+    ATTRIBUTES: name, department, rating, baseSalary
+
+METHOD calculateBonus(employees)
+    employees.stream()
+        .collect(groupingBy(department,
+                customCollector(
+                    CALCULATE totalSalary per department,
+                    pool = totalSalary * 0.10,
+                    distribute based on rating proportion
+                )))
+
+CUSTOM COLLECTOR:
+    totalRatings = SUM(emp.rating for dept)
+    FOR each employee
+        share = (emp.rating / totalRatings) * pool
+        PRINT emp.name + " → " + share
+
+End

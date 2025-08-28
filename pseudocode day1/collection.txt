@@ -1,0 +1,17 @@
+Start
+MAP<String, Integer> studentMarks
+ADD ("Alice", 85), ("Bob", 92), ("Charlie", 78)
+
+highest = studentMarks.stream()
+            .max(byValue)
+DISPLAY highest
+End
+
+Start
+LIST<Employee> employees
+ADD Employee("John", "HR"), Employee("Sara", "IT")
+
+filtered = employees.stream()
+             .filter(department = "IT")
+DISPLAY filtered
+End

@@ -1,0 +1,22 @@
+Start
+
+CLASS Course
+    ATTRIBUTES: courseId, courseName
+
+CLASS Student
+    ATTRIBUTES: studentId, name
+
+DECLARE registrationMap = Map<Course, List<Student>>
+
+METHOD registerStudent(course, student)
+    IF course not in registrationMap
+        registrationMap[course] = new List<Student>
+    registrationMap[course].add(student)
+
+METHOD displayStudentsPerCourse()
+    FOR each course in registrationMap.keys
+        PRINT course.courseName
+        FOR each student in registrationMap[course]
+            PRINT " - " + student.name
+
+End

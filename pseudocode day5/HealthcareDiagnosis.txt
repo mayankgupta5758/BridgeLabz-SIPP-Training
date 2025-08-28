@@ -1,0 +1,47 @@
+Start
+
+INTERFACE DiagnosisStrategy
+    METHOD diagnose(symptoms: List<String>) RETURNS List<String>
+
+CLASS RuleBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        IF symptoms contains ["fever", "cough", "fatigue"]
+            RETURN ["Flu", "COVID-19"]
+        ELSE RETURN ["Unknown"]
+
+CLASS AIBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        IF symptoms contains ["headache", "dizziness", "nausea"]
+            RETURN ["Migraine", "Vertigo"]
+        ELSE RETURN ["Unknown"]
+
+CLASS ProbabilityBasedDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        CALCULATE probabilities
+        RETURN list of likely diseases
+
+CLASS GeneticPatternDiagnosis IMPLEMENTS DiagnosisStrategy
+    METHOD diagnose(symptoms)
+        RETURN ["Genetic disorder candidates"]
+
+CLASS DiagnosisContext
+    ATTRIBUTE strategy: DiagnosisStrategy
+    METHOD setStrategy(strategy)
+        this.strategy = strategy
+    METHOD executeDiagnosis(symptoms)
+        RETURN strategy.diagnose(symptoms)
+
+MAIN:
+    patient1Symptoms = ["fever","cough","fatigue"]
+    ctx = new DiagnosisContext()
+    ctx.setStrategy(new RuleBasedDiagnosis())
+    PRINT ctx.executeDiagnosis(patient1Symptoms)
+
+    patient2Symptoms = ["headache","dizziness","nausea"]
+    ctx.setStrategy(new AIBasedDiagnosis())
+    PRINT ctx.executeDiagnosis(patient2Symptoms)
+
+    ctx.setStrategy(new GeneticPatternDiagnosis())
+    PRINT ctx.executeDiagnosis(["gene mutation"])
+
+End

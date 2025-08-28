@@ -1,0 +1,34 @@
+Start
+
+INTERFACE Searchable
+    METHOD search(criteria)
+
+INTERFACE Printable
+    METHOD print()
+
+CLASS PatientReport IMPLEMENTS Searchable, Printable
+    ATTRIBUTES: patientId, patientName, diagnosis
+    
+    METHOD search(criteria)
+        RETURN match if patientName or diagnosis matches criteria
+    
+    METHOD print()
+        PRINT patient report details
+
+CLASS LabReport IMPLEMENTS Searchable, Printable
+    ATTRIBUTES: testId, patientId, testResults
+    
+    METHOD search(criteria)
+        RETURN match if testId or patientId matches criteria
+    
+    METHOD print()
+        PRINT lab test results
+
+MAIN:
+    DECLARE reports = LIST of Printable
+    ADD PatientReport, LabReport to reports
+    
+    FOR each report in reports
+        CALL report.print()     // Polymorphism
+
+End

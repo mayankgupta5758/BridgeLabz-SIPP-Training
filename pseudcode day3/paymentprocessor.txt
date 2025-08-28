@@ -1,0 +1,23 @@
+Start
+
+INTERFACE Payment
+    METHOD pay(amount)
+
+CLASS CreditCardPayment IMPLEMENTS Payment
+    METHOD pay(amount)
+        PRINT "Paid " + amount + " using Credit Card"
+
+CLASS UpiPayment IMPLEMENTS Payment
+    METHOD pay(amount)
+        PRINT "Paid " + amount + " using UPI"
+
+CLASS PaymentProcessor
+    METHOD processPayment(Payment p, amount)
+        p.pay(amount)
+
+MAIN:
+    DECLARE processor = new PaymentProcessor()
+    processor.processPayment(new CreditCardPayment(), 500)
+    processor.processPayment(new UpiPayment(), 300)
+
+End

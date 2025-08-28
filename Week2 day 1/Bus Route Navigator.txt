@@ -1,0 +1,36 @@
+Start
+
+CLASS Node
+    ATTRIBUTE stopName, next
+
+CLASS LinkedList
+    ATTRIBUTE head
+    METHOD insertAfter(existingStop, newStop)
+        FIND existingStop
+        CREATE node(newStop)
+        SET node.next = existingStop.next
+        existingStop.next = node
+    METHOD delete(stopName)
+        FIND stopName
+        REMOVE node FROM list
+    METHOD search(stopName)
+        TRAVERSE list
+        IF found THEN PRINT "Stop exists"
+        ELSE PRINT "Stop not found"
+    METHOD displayRoute()
+        PRINT all stopNames in sequence
+
+MAIN
+    route = NEW LinkedList()
+    route.add("Depot")
+    route.add("Main Street")
+    route.add("City Mall")
+    route.add("Hospital")
+    route.add("Airport")
+
+    route.insertAfter("City Mall", "University")
+    route.delete("Hospital")
+    route.search("Airport")
+    route.displayRoute()
+
+End

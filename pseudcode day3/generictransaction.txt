@@ -1,0 +1,22 @@
+Start
+
+CLASS Transaction<T>
+    ATTRIBUTES: transactionId, data (T), amount, timestamp
+
+    METHOD constructor(transactionId, data, amount)
+        SET this.transactionId = transactionId
+        SET this.data = data
+        SET this.amount = amount
+        SET this.timestamp = currentTime
+
+    METHOD getTransactionDetails()
+        PRINT transactionId, data, amount, timestamp
+
+MAIN:
+    DECLARE transaction1 = new Transaction<String>("TXN001", "Payment to Restaurant", 1000)
+    DECLARE transaction2 = new Transaction<Integer>("TXN002", 12345, 500)
+
+    CALL transaction1.getTransactionDetails()
+    CALL transaction2.getTransactionDetails()
+
+End

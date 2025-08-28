@@ -1,0 +1,23 @@
+Start
+
+class Node
+    attributes: stopName, next
+
+class LinkedList
+    head
+    method insertAfter(prevStop,newStop)
+    method deleteStop(stopName)
+    method search(stopName)
+
+main
+    route = LinkedList()
+    route.insert("Depot")
+    route.insert("Main Street")
+    route.insert("City Mall")
+    route.insert("Hospital")
+    route.insert("Airport")
+    route.insertAfter("City Mall","University Stop")
+    route.deleteStop("Hospital")
+    route.search("Airport")
+
+End

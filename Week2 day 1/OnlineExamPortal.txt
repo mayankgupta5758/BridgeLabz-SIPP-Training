@@ -1,0 +1,31 @@
+Start
+
+CLASS User
+    ATTRIBUTE username, password
+    METHOD login()
+        PRINT "Generic login check"
+
+CLASS Student EXTENDS User
+    ATTRIBUTE enrolledCourses
+    METHOD login()
+        IF validateCredentials(username, password) AND isEnrolled(enrolledCourses)
+            PRINT "Student logged in → Show exams"
+        ELSE
+            PRINT "Student login failed"
+
+CLASS Admin EXTENDS User
+    ATTRIBUTE adminPrivileges
+    METHOD login()
+        IF validateCredentials(username, password) AND hasPrivileges(adminPrivileges)
+            PRINT "Admin logged in → Show exam management tools"
+        ELSE
+            PRINT "Admin login failed"
+
+MAIN
+    student = NEW Student("john123", "pass123", ["Maths"])
+    student.login()
+
+    admin = NEW Admin("admin01", "adminPass", TRUE)
+    admin.login()
+
+End

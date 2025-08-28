@@ -1,0 +1,17 @@
+Start 
+
+DECLARE queue = Queue<Server>
+
+METHOD addServer(server)
+    queue.enqueue(server)
+
+METHOD removeServer(server)
+    REMOVE server from queue
+
+METHOD processRequests(requests)
+    FOR each request in requests
+        server = queue.dequeue()
+        PRINT request + " → " + server
+        queue.enqueue(server)
+
+End

@@ -1,0 +1,15 @@
+Start
+
+CLASS Transaction
+    ATTRIBUTES: transactionId, merchant, amount, timestamp
+
+DECLARE transactions = List<Transaction>
+
+RESULT = transactions.stream()
+                     .collect(groupingBy(transaction -> transaction.merchant,
+                                          summingDouble(transaction -> transaction.amount)))
+
+FOR each merchant in RESULT.keySet
+    PRINT merchant + " : " + RESULT[merchant]
+
+End

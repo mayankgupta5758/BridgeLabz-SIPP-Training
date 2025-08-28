@@ -1,0 +1,59 @@
+Start
+
+INTERFACE TaxCalculator
+    METHOD calculateTax(amount)
+
+CLASS FoodTax IMPLEMENTS TaxCalculator
+    METHOD calculateTax(amount)
+        RETURN amount * 0.05
+
+CLASS BeverageTax IMPLEMENTS TaxCalculator
+    METHOD calculateTax(amount)
+        RETURN amount * 0.12
+
+CLASS ImportedTax IMPLEMENTS TaxCalculator
+    METHOD calculateTax(amount)
+        RETURN amount * 0.05 + customsDuty
+
+CLASS LuxuryTax IMPLEMENTS TaxCalculator
+    METHOD calculateTax(amount)
+        RETURN amount * 0.18
+
+INTERFACE DiscountPolicy
+    METHOD applyDiscount(totalAmount)
+
+CLASS NoDiscount IMPLEMENTS DiscountPolicy
+    METHOD applyDiscount(totalAmount)
+        RETURN totalAmount
+
+CLASS FlatDiscount IMPLEMENTS DiscountPolicy
+    METHOD applyDiscount(totalAmount)
+        RETURN totalAmount - 100
+
+CLASS PercentageDiscount IMPLEMENTS DiscountPolicy
+    METHOD applyDiscount(totalAmount)
+        RETURN totalAmount * 0.90
+
+CLASS BuyOneGetOne IMPLEMENTS DiscountPolicy
+    METHOD applyDiscount(totalAmount)
+        RETURN totalAmount / 2
+
+CLASS MenuItem
+    ATTRIBUTES: name, price, taxCalculator
+    METHOD getFinalPrice()
+        RETURN price + taxCalculator.calculateTax(price)
+
+CLASS Bill
+    ATTRIBUTES: items, discountPolicy
+    METHOD calculateTotal()
+        subtotal = SUM(item.getFinalPrice() for each item)
+        RETURN discountPolicy.applyDiscount(subtotal)
+
+MAIN:
+    item1 = new MenuItem("Paneer Tikka", 200, new FoodTax())
+    item2 = new MenuItem("Coke", 50, new BeverageTax())
+    item3 = new MenuItem("Imported Cheese", 500, new ImportedTax())
+    bill = new Bill([item1, item2, item3], new PercentageDiscount())
+    PRINT bill.calculateTotal()
+
+End

@@ -1,0 +1,22 @@
+Start
+
+class Room
+    attributes: roomNumber, customerName, daysStayed
+    method calculateBill()
+
+class DeluxeRoom extends Room
+    method calculateBill()
+        return 3000 * daysStayed
+
+class SuiteRoom extends Room
+    method calculateBill()
+        return 5000 * daysStayed
+
+main
+    r1 = DeluxeRoom("101","Ravi",3)
+    print r1.calculateBill()
+
+    r2 = SuiteRoom("201","Anita",2)
+    print r2.calculateBill()
+
+End

@@ -1,0 +1,11 @@
+Start
+
+DECLARE energyData = Map<Zone, Map<Day, List<Reading>>>
+
+METHOD findPeakLoads()
+    FOR each (zone, dayMap) in energyData
+        FOR each (day, readings) in dayMap
+            peak = MAX(readings)
+            PRINT zone + " " + day + " Peak = " + peak
+
+End

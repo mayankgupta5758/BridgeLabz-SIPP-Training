@@ -1,0 +1,27 @@
+Start
+
+class Item {
+    name
+    price
+}
+
+class ShoppingCart {
+    List<Item> items
+
+    method addItem(item):
+        items.add(item)
+
+    generic method calculateTotalPrice(List<T extends Item> list):
+        total ← 0
+        for each item in list:
+            total += item.price
+        return total
+}
+
+main():
+    cart ← new ShoppingCart()
+    cart.addItem(new Item("Book", 200))
+    cart.addItem(new Item("Pen", 50))
+    print("Total Price: " + cart.calculateTotalPrice(cart.items))
+
+End

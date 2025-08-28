@@ -1,0 +1,42 @@
+Start
+
+CLASS TrieNode
+    ATTRIBUTES: children, isEndOfWord, popularity, word
+
+CLASS Trie
+    root = new TrieNode()
+
+    METHOD insert(word, popularity)
+        node = root
+        FOR each char in word
+            IF char not in node.children
+                node.children[char] = new TrieNode()
+            node = node.children[char]
+        node.isEndOfWord = true
+        node.popularity = popularity
+        node.word = word
+
+    METHOD search(prefix, N)
+        node = root
+        FOR each char in prefix
+            IF char not in node.children RETURN []
+            node = node.children[char]
+        results = []
+        DFS(node, results)
+        SORT results by popularity DESC
+        RETURN top N words
+
+    METHOD DFS(node, results)
+        IF node.isEndOfWord
+            ADD (node.word, node.popularity) to results
+        FOR each child in node.children
+            DFS(child, results)
+
+MAIN:
+    trie.insert("pizza hut", 100)
+    trie.insert("pizza point", 80)
+    trie.insert("pita bread", 120)
+    trie.insert("pizzeria", 90)
+    PRINT trie.search("pi", 3)
+
+End

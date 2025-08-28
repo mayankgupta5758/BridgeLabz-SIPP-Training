@@ -1,0 +1,15 @@
+Start
+
+class QuizTimer {
+    circularArray ← [slot1, slot2, ..., slotN]
+    currentIndex ← 0
+
+    method startTimer():
+        while quiz not finished:
+            wait(1 second)
+            currentIndex = (currentIndex + 1) mod N
+            if time near end of slot:
+                print("Warning: Time almost over for this question")
+}
+
+End

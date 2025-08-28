@@ -1,0 +1,23 @@
+Start
+
+CLASS Graph
+    ATTRIBUTES: adjacencyList (Map<Zone, List<Zone>>), crimeData (Map<Zone, crimeScore>)
+    
+    METHOD addEdge(zone1, zone2)
+        adjacencyList[zone1].add(zone2)
+        adjacencyList[zone2].add(zone1)
+
+METHOD dfs(zone, visited, riskThreshold)
+    MARK zone as visited
+    IF crimeData[zone] > riskThreshold
+        PRINT "High Risk Zone: " + zone
+    
+    FOR each neighbor in adjacencyList[zone]
+        IF not visited[neighbor]
+            dfs(neighbor, visited, riskThreshold)
+
+MAIN:
+    CREATE graph with city zones
+    CALL dfs(startZone, visited, riskThreshold = 70)
+
+End

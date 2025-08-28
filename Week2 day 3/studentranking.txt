@@ -1,0 +1,35 @@
+Start
+
+class Student
+    attributes: name, marks
+
+function mergeSort(list)
+    if length(list) <= 1
+        return list
+    mid = length(list)/2
+    left = mergeSort(list[0..mid-1])
+    right = mergeSort(list[mid..end])
+    return merge(left,right)
+
+function merge(left,right)
+    result = []
+    while left and right not empty
+        if left[0].marks > right[0].marks
+            result.add(left.removeFirst())
+        else if left[0].marks < right[0].marks
+            result.add(right.removeFirst())
+        else
+            if left[0].name < right[0].name
+                result.add(left.removeFirst())
+            else
+                result.add(right.removeFirst())
+    append remaining left or right
+    return result
+
+main
+    students = [("Amit",92),("Bhavna",92),("Kiran",85),("Dinesh",78),("Charu",92)]
+    sortedList = mergeSort(students)
+    print sortedList
+
+
+End

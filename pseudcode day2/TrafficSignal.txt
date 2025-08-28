@@ -1,0 +1,25 @@
+Start
+
+enum TrafficLight { RED, YELLOW, GREEN }
+class TrafficSignal {
+    currentLight ← RED
+    interval ← 5 seconds
+    method switchLight():
+        if currentLight = RED:
+            currentLight ← GREEN
+        else if currentLight = GREEN:
+            currentLight ← YELLOW
+        else if currentLight = YELLOW:
+            currentLight ← RED
+
+    method startSimulation():
+        loop forever:
+            wait(interval)
+            switchLight()
+            print("Current Light: " + currentLight)
+}
+main():
+    signal ← new TrafficSignal()
+    signal.startSimulation()
+
+End

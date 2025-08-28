@@ -1,0 +1,78 @@
+Start
+
+CLASS Pet
+    ATTRIBUTES: name, age
+    CONSTRUCTOR(name, age) → set values
+
+CLASS Dog EXTENDS Pet
+    CONSTRUCTOR(name, age) → super(name, age)
+
+CLASS Cat EXTENDS Pet
+    CONSTRUCTOR(name, age) → super(name, age)
+
+CLASS Bird EXTENDS Pet
+    CONSTRUCTOR(name, age) → super(name, age)
+
+MAIN:
+    CREATE Dog("Buddy", 3)
+    CREATE Cat("Mittens", 2)
+    CREATE Bird("Tweety", 1)
+End
+
+
+Start
+CLASS Member
+    ATTRIBUTES: name, id, membershipDate
+    METHOD checkValidity() → IF currentDate < expiryDate THEN valid ELSE expired
+
+MAIN:
+    CREATE Member("John", 101, "2025-01-01")
+    CALL member.checkValidity()
+End 
+
+Start
+STACK undoStack
+METHOD typeText(text):
+    PUSH text TO undoStack
+
+METHOD undo():
+    IF stack NOT empty → POP last text
+
+MAIN:
+    typeText("Hello")
+    typeText("World")
+    undo() // Removes "World"
+End
+
+
+Start
+QUEUE normalQueue
+QUEUE emergencyQueue
+
+METHOD addCustomer(name, priority):
+    IF priority = "emergency" → ENQUEUE emergencyQueue
+    ELSE ENQUEUE normalQueue
+
+METHOD serveCustomer():
+    IF emergencyQueue NOT empty → DEQUEUE emergencyQueue
+    ELSE DEQUEUE normalQueue
+End
+
+
+Start
+MAP<String, Integer> studentMarks
+ADD ("Alice", 85), ("Bob", 92), ("Charlie", 78)
+
+highest = studentMarks.stream()
+            .max(byValue)
+DISPLAY highest
+End
+
+Start
+LIST<Employee> employees
+ADD Employee("John", "HR"), Employee("Sara", "IT")
+
+filtered = employees.stream()
+             .filter(department = "IT")
+DISPLAY filtered
+End

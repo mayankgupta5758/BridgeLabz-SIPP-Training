@@ -1,0 +1,18 @@
+Start
+
+CLASS Customer
+    ATTRIBUTES: name, address, phone
+
+CLASS Restaurant
+    ATTRIBUTES: name, location, menuItems
+
+CLASS DeliveryBoy
+    ATTRIBUTES: name, contactNumber, vehicleNumber
+
+CLASS Order
+    ATTRIBUTES: orderId, customer (Customer), restaurant (Restaurant), deliveryBoy (DeliveryBoy), items, totalAmount
+    
+    METHOD showOrderDetails()
+        PRINT customer.name, restaurant.name, deliveryBoy.name, items, totalAmount
+
+End

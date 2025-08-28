@@ -1,0 +1,29 @@
+Start
+
+attendance[30][30]
+
+method markAttendance(student,day,value)
+    attendance[student][day] = value
+
+method dailySummary(day)
+    count = sum(attendance[i][day] for i in students)
+    print count
+
+method monthlySummary(student)
+    total = sum(attendance[student][j] for j in days)
+    print total
+
+method defaulters()
+    for each student
+        total = monthlySummary(student)
+        if total < 22
+            print student
+
+main
+    markAttendance(1,1,1)
+    markAttendance(3,1,0)
+    dailySummary(10)
+    monthlySummary(5)
+    defaulters()
+
+End

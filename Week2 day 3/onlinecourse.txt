@@ -1,0 +1,34 @@
+Start
+
+class Course
+    attributes: title, duration, price
+    methods: getters
+
+class Student
+    attributes: name, email, enrolledCourses (List<Course>)
+    method enrollCourse(course)
+        if course not in enrolledCourses
+            add course
+        else
+            print "Already enrolled"
+    method viewEnrolledCourses()
+        for each course in enrolledCourses
+            print course.title, course.duration, course.price
+
+main
+    c1 = Course("Java Programming Basics","6 weeks",4999)
+    c2 = Course("Data Structures in Java","8 weeks",5999)
+    c3 = Course("Spring Boot for Web Development","10 weeks",6999)
+
+    s1 = Student("Amit","amit@email")
+    s1.enrollCourse(c1)
+    s1.enrollCourse(c2)
+
+    s2 = Student("Priya","priya@email")
+    s2.enrollCourse(c3)
+    s2.enrollCourse(c1)
+
+    s1.viewEnrolledCourses()
+    s2.viewEnrolledCourses()
+
+End

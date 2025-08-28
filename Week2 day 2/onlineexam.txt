@@ -1,0 +1,27 @@
+Start
+
+class User
+    attributes: username, password
+    method login()
+
+class Student extends User
+    method login()
+        if registered and enrolled
+            print "Access to exams granted"
+        else
+            print "Access denied"
+
+class Admin extends User
+    method login()
+        if staff credentials valid and has admin privileges
+            print "Access to exam management granted"
+        else
+            print "Access denied"
+
+main
+    create Student("john123","pass")
+    student.login()
+    create Admin("admin01","adminpass")
+    admin.login()
+
+End

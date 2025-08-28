@@ -1,0 +1,31 @@
+Start
+
+INTERFACE Rentable
+    METHOD rent(duration)
+
+ABSTRACT CLASS Vehicle IMPLEMENTS Rentable
+    ATTRIBUTES: vehicleId, brand, baseRate
+    
+    METHOD rent(duration)
+        cost = duration * baseRate
+        RETURN cost
+
+CLASS Car EXTENDS Vehicle
+    METHOD rent(duration)
+        RETURN duration * baseRate * 1.2   // Car premium
+
+CLASS Bike EXTENDS Vehicle
+    METHOD rent(duration)
+        RETURN duration * baseRate * 0.8   // Bike discount
+
+CLASS VehicleFactory
+    METHOD getVehicle(type)
+        IF type == "Car" RETURN new Car()
+        IF type == "Bike" RETURN new Bike()
+
+MAIN:
+    factory = new VehicleFactory()
+    v1 = factory.getVehicle("Car")
+    PRINT v1.rent(5)
+
+End

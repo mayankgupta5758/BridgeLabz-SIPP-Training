@@ -1,0 +1,18 @@
+class Doctor {
+    name
+    specialization
+}
+
+main():
+    Map<String, List<Doctor>> departmentMap
+
+    departmentMap["Cardiology"] ← [Doctor("Dr. A", "Cardiologist"), Doctor("Dr. B", "Cardiologist")]
+    departmentMap["Neurology"]  ← [Doctor("Dr. C", "Neurologist")]
+
+    // Filtering doctors by specialization
+    specializationToFind ← "Cardiologist"
+    for each department in departmentMap:
+        doctors ← departmentMap[department]
+        for each doctor in doctors:
+            if doctor.specialization = specializationToFind:
+                print(doctor.name + " works in " + department)

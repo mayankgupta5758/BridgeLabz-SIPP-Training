@@ -1,0 +1,21 @@
+Start
+
+class Job {
+    id
+    deadline
+    processingTime
+}
+
+class JobScheduler {
+    priorityQueue ← empty (min-heap by deadline, then processingTime)
+
+    method addJob(job):
+        insert job into priorityQueue
+
+    method scheduleJobs():
+        while priorityQueue not empty:
+            job ← remove highest priority
+            process(job)
+}
+
+End

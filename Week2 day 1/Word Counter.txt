@@ -1,0 +1,22 @@
+Start
+
+METHOD wordCounter(paragraph)
+    words = paragraph.toLowerCase()
+                      .removePunctuation()
+                      .split(" ")
+
+    map = HashMap<String, Integer>()
+
+    FOR word IN words
+        map[word] = map.getOrDefault(word, 0) + 1
+
+    sortedList = sortByValueDescending(map)
+
+    FOR each (word, count) IN sortedList
+        PRINT word, "→", count
+
+MAIN
+    text = "The news today is about the rise in technology trends."
+    wordCounter(text)
+
+End

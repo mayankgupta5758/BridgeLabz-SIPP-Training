@@ -1,0 +1,32 @@
+Start
+
+abstract class Crop {
+    method getWaterRequirement()
+    method harvest()
+}
+
+class Rice extends Crop {
+    method getWaterRequirement():
+        return "High Water Requirement"
+
+    method harvest():
+        print("Harvesting Rice... Done!")
+}
+
+class Wheat extends Crop {
+    method getWaterRequirement():
+        return "Medium Water Requirement"
+
+    method harvest():
+        print("Harvesting Wheat... Done!")
+}
+
+main():
+    crop1 ← new Rice()
+    crop2 ← new Wheat()
+    print("Rice Water Requirement: " + crop1.getWaterRequirement())
+    crop1.harvest()
+    print("Wheat Water Requirement: " + crop2.getWaterRequirement())
+    crop2.harvest()
+
+End

@@ -1,0 +1,30 @@
+Start
+
+class Transaction<T>
+    attribute: paymentObject
+    method processPayment()
+        if paymentObject is UPI
+            print "Payment of amount via UPI successful for merchant"
+        if paymentObject is Card
+            print "Payment of amount via Card successful for merchant"
+        if paymentObject is NetBanking
+            print "Payment of amount via NetBanking successful for bank"
+
+class UPI
+    attributes: upiId, amount, merchantName
+
+class Card
+    attributes: cardNumber, cvv, expiryDate, amount, merchantName
+
+class NetBanking
+    attributes: bankName, accountNumber, amount, merchantName
+
+main
+    t1 = Transaction(UPI("ramesh@upi",1200,"Amazon"))
+    t1.processPayment()
+    t2 = Transaction(Card("1234-5678-9876-5432","123","12/27",5000,"MakeMyTrip"))
+    t2.processPayment()
+    t3 = Transaction(NetBanking("HDFC","00112233",8000,"Salary"))
+    t3.processPayment()
+
+End
